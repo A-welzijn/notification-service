@@ -1,9 +1,9 @@
 'use strict';
 (function (module) {
   try {
-    module = angular.module('a-welzijn.notificationservice');
+    module = angular.module('awelzijn.notificationservice');
   } catch (e) {
-    module = angular.module('a-welzijn.notificationservice', ['$rootScope']);
+    module = angular.module('awelzijn.notificationservice', ['$rootScope']);
   }
   module.factory('aWelzijnNotificationService', [function ($rootScope) {
     function _createErrorMessages(msg, code, url) {
