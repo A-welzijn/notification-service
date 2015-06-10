@@ -3,9 +3,9 @@
   try {
     module = angular.module('awelzijn.notificationservice');
   } catch (e) {
-    module = angular.module('awelzijn.notificationservice', ['$rootScope']);
+    module = angular.module('awelzijn.notificationservice', []);
   }
-  module.factory('aWelzijnNotificationService', [function ($rootScope) {
+  module.factory('aWelzijnNotificationService', ['$rootScope', function ($rootScope) {
     function _createErrorMessages(msg, code, url) {
       var errors = [];
       if (msg && msg.error && msg.error.messages) {
