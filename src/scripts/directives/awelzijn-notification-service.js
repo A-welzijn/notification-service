@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('a-welzijn.notificationservice', ['$rootScope']);
   }
-  module.factory('awelzijn-NotificationService', [function ($rootScope) {
+  module.factory('aWelzijnNotificationService', [function ($rootScope) {
     function _createErrorMessages(msg, code, url) {
       var errors = [];
       if (msg && msg.error && msg.error.messages) {
