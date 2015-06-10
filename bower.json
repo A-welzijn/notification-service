@@ -1,8 +1,8 @@
 {
-  "name": "tink-skeleton-angular",
+  "name": "awelzijn-notification-service",
   "version": "1.0.0",
   "main": [
-    "dist/tink-skeleton-angular.js"
+    "dist/awelzijn-notification-service.js"
   ],
   "ignore": [
     ".*",
@@ -14,18 +14,6 @@
     "*.sublime-project"
   ],
   "dependencies": {
-    "angular": "~1.3.12",
-    "angular-resource": "~1.3.12",
-    "angular-cookies": "~1.3.12",
-    "angular-sanitize": "~1.3.12",
-    "angular-animate": "~1.3.12",
-    "angular-touch": "~1.3.12",
-    "angular-route": "~1.3.12",
-    "jquery": "~2.1.3",
-    "tink-core": "latest"
-  },
-  "devDependencies": {
-    "angular-mocks": "~1.3.12",
-    "angular-scenario": "~1.3.12"
+    "angular": "~1.3.12"
   }
 }
