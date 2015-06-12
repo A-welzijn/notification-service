@@ -1,9 +1,10 @@
-# A-Welzijn Notification Callouts
+# A-Welzijn Notification Service
 
-v1.0.5
+v1.0.6
 
 ### Hoe het te gebruiken
 
+Deze service dient samen gebruikt te worden met de [notification-callout](https://github.com/A-welzijn/notification-callout) (anders worden de booschappen wel bijgehouden, maar niet getoond)
 Je injecteert de service in je controller
 ```javascript
 var controller = function (notificationService) {...}
