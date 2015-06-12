@@ -1,38 +1,21 @@
-# Tink skeleton Angular directive
+# A-Welzijn Notification Callouts
 
-v1.0.4
+v1.0.5
 
-## What is this repository for?
+### Hoe het te gebruiken
 
-The Tink Angular skeleton provides a scaffold for a directive or service that can easily work with Tink.
-
-Tink is an in-house developed easy-to-use front end framework for quick prototyping and simple deployment of all kinds of websites and apps, keeping a uniform and consistent look and feel.
-
-## Setup
-
-### Prerequisites
-
-* nodeJS [http://nodejs.org/download/](http://nodejs.org/download/)
-* bower: `npm install -g bower`
-
-### Install
-
-1. Go to the root of your project and type the following command in your terminal:
-   `bower install tink-back-to-top-angular --save`
-
-2. Include `dist/tink-back-to-top-angular.js` and its necessary dependencies in your project.
-
-3. On http://tink.digipolis.be you will find all necessary documentation.
-
-## Contribution guidelines
-
-* If you're not sure, drop us a note
-* Fork this repo
-* Do your thing
-* Create a pull request
-
-## Who do I talk to?
-
-* Jasper Van Proeyen - jasper.vanproeyen@digipolis.be - Lead front-end
-* Tom Wuyts - tom.wuyts@digipolis.be - Lead UX
-* [The hand](https://www.youtube.com/watch?v=_O-QqC9yM28)
+Je injecteert de service in je controller
+```javascript
+var controller = function (notificationService) {...}
+controller.$inject = ['aWelzijnNotificationService'];
+```
+Je gebruikt de volgende methodes
+```javascript
+notificationService.notify("Yes!");
+notificationService.warning("Oei!");
+notificationService.error("Oeioei!");
+```
+Bij elke methode kan je 1 string of een array van strings gebruiken
+```javascript
+notificationService.notify(["Yes!", "Jawadde", "Zalig"]);
+```
