@@ -1,8 +1,19 @@
 # A-Welzijn Notification Service
 
-v1.0.7
+v1.0.8
 
 ### Hoe het te gebruiken
+
+```javascript
+"dependencies": {
+	"awelzijn-notification-service": "latest"
+ }
+```
+```javascript
+var app = angular.module('yourApp', [
+	'awelzijn.notificationservice'
+]);
+```
 
 Deze service dient samen gebruikt te worden met de [notification-callout](https://github.com/A-welzijn/notification-callout) (anders worden de booschappen wel bijgehouden, maar niet getoond)
 
