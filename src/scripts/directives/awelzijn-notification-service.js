@@ -39,6 +39,7 @@
 
       $rootScope.errors = [];
       $rootScope.warnings = [];
+      $rootScope.messages = [];
       $rootScope.messages = messages;
     };
 
@@ -54,6 +55,7 @@
 
       $rootScope.messages = [];
       $rootScope.warnings = [];
+      $rootScope.messages = [];
       $rootScope.errors = errors;
     };
 
@@ -69,14 +71,32 @@
 
       $rootScope.messages = [];
       $rootScope.errors = [];
+      $rootScope.messages = [];
       $rootScope.warnings = warnings;
+    };
+
+    function _message(msg) {
+      var messages = [];
+      if (msg && msg.constructor === Array) {
+        angular.forEach(msg, function (message) {
+          messages.push({ message: message, timestamp: new Date() });
+        })
+      } else {
+        messages.push({ message: msg, timestamp: new Date() });
+      }
+
+      $rootScope.messages = [];
+      $rootScope.errors = [];
+      $rootScope.warnings = [];
+      $rootScope.messages = messages;
     };
 
     return {
       createErrorMessages: _createErrorMessages,
       notify: _notify,
       error: _error,
-      warning: _warning
+      warning: _warning,
+      message: _message
     };
   }]);
 })();
