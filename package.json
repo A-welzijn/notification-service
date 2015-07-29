@@ -1,7 +1,7 @@
 {
   "name": "awelzijn-notification-service",
   "description": "Notification service",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "repository": {
     "type": "git",
     "url": "git@github.com:A-welzijn/notification-service.git"

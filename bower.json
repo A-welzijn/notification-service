@@ -1,6 +1,6 @@
 {
   "name": "awelzijn-notification-service",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": [
     "dist/awelzijn-notification-service.js"
   ],

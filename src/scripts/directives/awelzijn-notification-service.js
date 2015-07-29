@@ -39,7 +39,7 @@
 
       $rootScope.errors = [];
       $rootScope.warnings = [];
-      $rootScope.messages = [];
+      $rootScope.info = [];
       $rootScope.messages = messages;
     };
 
@@ -55,7 +55,7 @@
 
       $rootScope.messages = [];
       $rootScope.warnings = [];
-      $rootScope.messages = [];
+      $rootScope.info = [];
       $rootScope.errors = errors;
     };
 
@@ -71,7 +71,7 @@
 
       $rootScope.messages = [];
       $rootScope.errors = [];
-      $rootScope.messages = [];
+      $rootScope.info = [];
       $rootScope.warnings = warnings;
     };
 
@@ -88,7 +88,7 @@
       $rootScope.messages = [];
       $rootScope.errors = [];
       $rootScope.warnings = [];
-      $rootScope.messages = messages;
+      $rootScope.info = messages;
     };
 
     return {
