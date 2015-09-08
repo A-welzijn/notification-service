@@ -36,10 +36,10 @@
       var messages = [];
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          messages.push({ type: "success", message: message, timestamp: new Date() });
+          messages.push({ type: "success", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        messages.push({ type: "success", message: msg, timestamp: new Date() });
+        messages.push({ type: "success", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
 
 	  _clear();
@@ -49,10 +49,10 @@
 	function _addNotification(msg) {
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          $rootScope.notifications.push({ type: "success", message: message, timestamp: new Date() });
+          $rootScope.notifications.push({ type: "success", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        $rootScope.notifications.push({ type: "success", message: msg, timestamp: new Date() });
+        $rootScope.notifications.push({ type: "success", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
     };
 	
@@ -61,10 +61,10 @@
       var errors = [];
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          errors.push({ type: "error", title: "Let op!", message: message, timestamp: new Date(), dismissible : false });
+          errors.push({ type: "error", title: "Let op!", message: message, timestamp: new Date(), dismissible : false, actions: [] });
         })
       } else {
-        errors.push({ type: "error", message: msg, timestamp: new Date(), dismissible : false });
+        errors.push({ type: "error", message: msg, timestamp: new Date(), dismissible : false, actions: [] });
       }
 	  
 	  _clear();
@@ -74,22 +74,22 @@
 	function _addError(msg, dismissible) {
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          $rootScope.errors.push({ type: "error", title: "Let op!", message: message, timestamp: new Date(), dismissible : dismissible });
+          $rootScope.errors.push({ type: "error", title: "Let op!", message: message, timestamp: new Date(), dismissible : dismissible, actions: [] });
         })
       } else {
-        $rootScope.errors.push({ type: "error", title: "Let op!", message: msg, timestamp: new Date(), dismissible : dismissible });
+        $rootScope.errors.push({ type: "error", title: "Let op!", message: msg, timestamp: new Date(), dismissible : dismissible, actions: [] });
       }
     };
-
+	
 	// WARNING
     function _warning(msg) {
       var warnings = [];
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          warnings.push({ type: "warning", message: message, timestamp: new Date() });
+          warnings.push({ type: "warning", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        warnings.push({ type: "warning", message: msg, timestamp: new Date() });
+        warnings.push({ type: "warning", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
 	
 	  _clear();
@@ -99,10 +99,10 @@
 	function _addWarning(msg) {
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          $rootScope.warnings.push({ type: "warning", message: message, timestamp: new Date() });
+          $rootScope.warnings.push({ type: "warning", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        $rootScope.warnings.push({ type: "warning", message: msg, timestamp: new Date() });
+        $rootScope.warnings.push({ type: "warning", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
     };
 	
@@ -111,10 +111,10 @@
       var messages = [];
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          messages.push({ type: "message", message: message, timestamp: new Date() });
+          messages.push({ type: "message", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        messages.push({ type: "message", message: msg, timestamp: new Date() });
+        messages.push({ type: "message", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
 	  
 	  _clear();
@@ -124,13 +124,14 @@
 	function _addMessage(msg) {
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          $rootScope.messages.push({ type: "message", message: message, timestamp: new Date() });
+          $rootScope.messages.push({ type: "message", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        $rootScope.messages.push({ type: "message", title: "test", message: msg, timestamp: new Date()});
+        $rootScope.messages.push({ type: "message", title: "test", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
     };
 	
+	// CLEAR
 	function _clearNotifications() {
       $rootScope.notifications = [];
     };
@@ -155,30 +156,90 @@
 	  
     };
 	
-	function _removeMessage(type, index) {
+	
+	// FUNCTIONS WITH CALLOUT OBJECTS
+	/*
+		{ 
+		type: "error",	// warning, error, message, info
+		title: "Let op!", 
+		message: "inhoud", 
+		dismissible : dismissible,
+		actions : [ { name: "", callback: callbackFn, callbackParams: {} } ]	-> callbackFn must have 2 params: callOut itself and callbackParams
+		}
+	*/
+	function _addCallOut(callOut) {
+      if (callOut) {
+		  
+		  callOut.timestamp = new Date();
+		  
+		  switch(callOut.type){
+			case "error":
+				$rootScope.errors.push(callOut);
+				break;
+			case "warning":
+				$rootScope.warnings.push(callOut);
+				break;
+			case "success":
+				$rootScope.notifications.push(callOut);
+				break;
+			case "message":
+				$rootScope.messages.push(callOut);
+				break;
+			default: break;
+		  }
+      }
+    };
+	
+  // remove call-out object from collection - index is determined by indexOf(callOut)
+	function _removeCallOut(callOut) {
+
+		var index = -1;
 		
-		var collection = [];
+		if(callOut){
+			
+			switch(callOut.type){
+				case "error":
+					index = $rootScope.errors.indexOf(callOut);
+					if( index >= 0 && $rootScope.errors.length > index ) $rootScope.errors.splice(index, 1);
+					break;
+				case "warning":
+					index = $rootScope.warnings.indexOf(callOut);
+					if( index >= 0 && $rootScope.warnings.length > index ) $rootScope.warnings.splice(index, 1);
+					break;
+				case "success":
+					index = $rootScope.notifications.indexOf(callOut);
+					if( index >= 0 && $rootScope.notifications.length > index ) $rootScope.notifications.splice(index, 1);
+					break;
+				case "message":
+					index = $rootScope.messages.indexOf(callOut);
+					if( index >= 0 && $rootScope.messages.length > index ) $rootScope.messages.splice(index, 1);
+					break;
+				default: break;
+			}
+		}
+	};
+
+  // remove call-out object at a specified index from a collection
+	function _removeCallOutByIndex(type, index) {
 		
 		switch(type){
 			case "error":
-				collection = $rootScope.errors;
+				if( index >= 0 && $rootScope.errors.length > index ) $rootScope.errors.splice(index, 1);
 				break;
 			case "warning":
-				collection = $rootScope.warnings;
+				if( index >= 0 && $rootScope.warnings.length > index ) $rootScope.warnings.splice(index, 1);
 				break;
 			case "success":
-				collection = $rootScope.notifications;
+				if( index >= 0 && $rootScope.notifications.length > index ) $rootScope.notifications.splice(index, 1);
 				break;
 			case "message":
-				collection = $rootScope.messages;
+				if( index >= 0 && $rootScope.messages.length > index ) $rootScope.messages.splice(index, 1);
 				break;
 			default: break;
 		}
-		
-		if( index >= 0 && collection.length > index ) collection.splice(index, 1);
 	};
 	
-	// bewaar de huidige meldingen
+	// cache the current call-out collections within this service
 	function _cacheCallOuts() {
 		_cache.notifications = _getNotifications();
 		_cache.errors = _getErrors();
@@ -188,7 +249,7 @@
 		_callOutsCached = true;
     };
 	
-	// herzet de huidige meldingen vanuit cache
+	// reset the current call-out collections from cache
 	function _restoreCallOuts() {
 		$rootScope.notifications = _cache.notifications;
 		$rootScope.errors = _cache.errors;
@@ -235,8 +296,11 @@
 
     return {
       createErrorMessages: _createErrorMessages,
+	  addCallOut: _addCallOut,
+	  removeCallOut: _removeCallOut,
+	  removeCallOutByIndex: _removeCallOutByIndex,
       notify: _notify,
-	  addNotification: _addNotification,
+	  addNotification: _addNotification,	  
       error: _error,
 	  addError: _addError,
       warning: _warning,
@@ -249,7 +313,6 @@
 	  clearErrors: _clearErrors,
 	  clearWarnings: _clearWarnings,
 	  clearMessages: _clearMessages,
-	  removeMessage: _removeMessage,
 	  getNotifications: _getNotifications,
 	  getErrors : _getErrors,
 	  getWarnings: _getWarnings,
@@ -259,4 +322,4 @@
 	  callOutsCached : _callOutsCached
     };
   }]);
-})();
+})();;
