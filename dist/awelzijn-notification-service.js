@@ -64,7 +64,7 @@
           errors.push({ type: "error", title: "Let op!", message: message, timestamp: new Date(), dismissible : false, actions: [] });
         })
       } else {
-        errors.push({ type: "error", message: msg, timestamp: new Date(), dismissible : false, actions: [] });
+        errors.push({ type: "error", title: "", message: msg, timestamp: new Date(), dismissible : false, actions: [] });
       }
 	  
 	  _clear();
@@ -86,10 +86,10 @@
       var warnings = [];
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          warnings.push({ type: "warning", message: message, timestamp: new Date(), dismissible : true, actions: [] });
+          warnings.push({ type: "warning", title: "", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        warnings.push({ type: "warning", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
+        warnings.push({ type: "warning", title: "", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
 	
 	  _clear();
@@ -99,10 +99,10 @@
 	function _addWarning(msg) {
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          $rootScope.warnings.push({ type: "warning", message: message, timestamp: new Date(), dismissible : true, actions: [] });
+          $rootScope.warnings.push({ type: "warning", title: "", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        $rootScope.warnings.push({ type: "warning", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
+        $rootScope.warnings.push({ type: "warning", title: "", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
     };
 	
@@ -111,10 +111,10 @@
       var messages = [];
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          messages.push({ type: "message", message: message, timestamp: new Date(), dismissible : true, actions: [] });
+          messages.push({ type: "message", title: "", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        messages.push({ type: "message", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
+        messages.push({ type: "message", title: "", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
 	  
 	  _clear();
@@ -124,10 +124,10 @@
 	function _addMessage(msg) {
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
-          $rootScope.messages.push({ type: "message", message: message, timestamp: new Date(), dismissible : true, actions: [] });
+          $rootScope.messages.push({ type: "message", title: "", message: message, timestamp: new Date(), dismissible : true, actions: [] });
         })
       } else {
-        $rootScope.messages.push({ type: "message", title: "test", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
+        $rootScope.messages.push({ type: "message", title: "", message: msg, timestamp: new Date(), dismissible : true, actions: [] });
       }
     };
 	
