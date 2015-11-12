@@ -1,6 +1,6 @@
 # A-Welzijn Notification Service
 
-v2.1.1
+v2.1.2
 
 ### Hoe het te gebruiken
 
