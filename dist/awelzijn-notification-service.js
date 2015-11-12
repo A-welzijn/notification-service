@@ -57,7 +57,7 @@
     };
 	
 	// ERROR
-	function _error(msgn, dismissible) {
+	function _error(msg, dismissible) {
       var errors = [];
       if (msg && msg.constructor === Array) {
         angular.forEach(msg, function (message) {
