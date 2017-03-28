@@ -28,7 +28,7 @@
       else {
         errors.push("Er is een onbekende fout opgetreden");
       }
-      _error(errors);
+      _error(errors, true);
     };
 
 	// NOTIFICATION

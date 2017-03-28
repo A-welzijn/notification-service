@@ -19,3 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2015-04-23
 
 Initial release
+
+## [3.1.1] - 2017-03-28
+
+Dismissible default error messages
